@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  @apply text-sm;
+  @apply bg-gray-500;
+  @apply text-gray-900;
+  /* background-color: #475569; */
+}
+
+/* Animation */
+
+.fadeInUp {
+  transition: 0.5s all ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 60px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    transform: translate3d(0, 60px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 0.75s;
+  -webkit-animation-fill-mode: both;
+  animation-duration: 0.75s;
+  animation-fill-mode: both;
+}
+
+.animatedFadeInUp {
+  opacity: 0;
+}
+
+.fadeInUp {
+  opacity: 0;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
+.RosterApp {
+  /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); */
+
+  box-shadow: 
+    /*inner glow*/ inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
+    /*shadow ring*/ 0 0 0 1px hsla(0, 0%, 0%, 0.05),
+    /*multiple soft shadows*/ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+    0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+  background-color: rgba(26, 26, 26, 0.8);
+  border-radius: 12px;
+  left: 1rem;
+  right: 1rem;
+  margin: 0px auto;
+  box-sizing: border-box;
+  line-height: normal;
+  max-width: calc(1200px + 8em);
+  max-height: 820px;
+  /* height: 820px; */
+  height: 600px;
+  /* margin-top: 5rem; */
+  border: solid 2px;
+  border-color: #606060;
+  display: flex;
+  /* background-image: url("../assets/Blog/Login_Bg.png"); */
+  /* background-image: url("../assets/Blog/Login_Bg3.png"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.AboutMe_Section {
+  position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0px;
+  border: 0px;
+  padding: 14px;
+  box-sizing: border-box;
+  line-height: normal;
+  box-shadow: 
+    /*inner glow*/ inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
+    /*shadow ring*/ 0 0 0 1px hsla(0, 0%, 0%, 0.05),
+    /*multiple soft shadows*/ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+    0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+  /* background-color: rgba(32, 32, 32, 0.8); */
+  /* background-color: rgba(26, 26, 26, 0.8); */
+  border-radius: 12px;
+}
+
+.Timeline_Section {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-start-1 {
+  grid-column-start: 1;
+}
+
+.col-start-3 {
+  grid-column-start: 3;
+}
+
+.col-end-3 {
+  grid-column-end: 3;
+}
+
+blockquote,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+
+/* p,
+h4 {
+  font-size: 0.8rem;
+} */
+
+.MyInfo_Section {
+  margin-left: 10px;
+  gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.unselectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.form_Input {
+  /* text-indent: 12%; */
+  /* text-indent: 2rem; */
+  outline: none;
+
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.form_Input:focus {
+  border: 2px solid #d46f13;
+}
+
+.form_Input:focus::placeholder {
+  color: transparent;
+}
