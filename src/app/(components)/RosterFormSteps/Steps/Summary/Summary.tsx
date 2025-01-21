@@ -33,11 +33,11 @@ export function Summary() {
   } = useContext(FormContext);
 
   const scriptUrl =
-    "https://script.google.com/macros/s/AKfycbyk0fXddO5b7SOyGtfjlXKaf_XmgMpIQ4AlXqTVwba7OwL6PQVfAeakvGZmRqg47IQw/exec";
-  const SubmittingInProgress = false;
+    "https://script.google.com/macros/s/AKfycbz0vbKj0oXK6H_kweUXmmd-xIvz9x3VBlrO8LPCIaqhxsuYzX10hmOTD6c-vdUoSp3k/exec";
+  let SubmittingInProgress = false;
 
   function handleGoForwardStep() {
-    console.log("Form Submitted");
+    // console.log("Form Submitted");
     console.log("Player Info:", { name: nameField.value });
     console.log("Characters Info:", [
       { role: role1.value, class: class1.value, spec: spec1.value },
@@ -59,6 +59,7 @@ export function Summary() {
     console.log("Additional Comments:", additionComments.value);
 
     // Submission
+    SubmittingInProgress = true;
     // Prep Data
     const formData = new FormData();
 
@@ -97,6 +98,8 @@ export function Summary() {
         if (response.ok) {
           // setIsSubmittedPopUpVisible(!isSubmittedPopupVisible);
           console.log("Form Submitted");
+          console.log(response);
+          // console.log(formData);
         } else {
           throw new Error("Network response was not ok.");
         }
