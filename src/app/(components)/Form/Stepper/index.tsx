@@ -1,6 +1,8 @@
 import { useFormStep } from "@/app/hooks/use-form-step";
 import { Stepper } from "./Stepper";
 
+import bg from "../../../../../public/formStepper/AzjKahet.jpg";
+
 export function Sidebar() {
   const { currentStep, steps } = useFormStep();
 
