@@ -8,9 +8,9 @@ export function Sidebar() {
 
   return (
     <div
-      className="FormStepper
-      flex justify-center items-start pt-8 h-[172px] w-full bg-no-repeat bg-auto bg-[url('/formStepper/vertical.jpg')] bg-bottom
-      sm:flex-col sm:justify-start sm:items-start sm:p-8 sm:w-[260px] sm:h-full sm:bg-cover sm:bg-[url('/formStepper/AzjKahet.jpg')] sm:rounded-lg sm:bg-left"
+      className="FormStepper flex justify-center items-start pt-8 h-[172px] w-full bg-no-repeat bg-auto bg-bottom
+      sm:flex-col sm:justify-start sm:items-start sm:p-8 sm:w-[260px] sm:h-full sm:bg-cover sm:rounded-lg sm:bg-left"
+      style={{ backgroundImage: `url(${bg.src})` }} // Dynamically set the background image
     >
       <div className="flex flex-row gap-4 sm:flex-col sm:gap-8 top-0 bottom-0 m-auto unselectable">
         {steps.map((step) => {
