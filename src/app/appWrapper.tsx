@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
-import SiteProvider, { useAppSelector } from "./redux";
+import React from "react";
+import SiteProvider from "./redux";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (

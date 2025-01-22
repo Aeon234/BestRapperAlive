@@ -2,14 +2,14 @@
 
 import Form from "@/app/(components)/Form/FormFragments";
 import { Fragment, useContext } from "react";
-import { useForm } from "@/app/hooks/use-form";
+// import { useRouter } from "next/router";
 import { useFormStep } from "@/app/hooks/use-form-step";
 import { StepperControl } from "@/app/(components)/Form/StepperControl";
-// import { FormContext } from "@/app/context/FormContext"; // Adjust the path based on your folder structure
 import { FormContext } from "@/app/contexts/form";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export function Summary() {
-  const { handleNextStep, handlePreviousStep } = useFormStep();
+  const { handlePreviousStep } = useFormStep();
   const {
     nameField,
     role1,
@@ -30,36 +30,18 @@ export function Summary() {
     salesLeadershipInterest,
     salesLeadershipInterestComment,
     additionComments,
+    isSubmitting,
+    setIsSubmitting,
+    router,
   } = useContext(FormContext);
+  // const router = useRouter();
 
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbz0vbKj0oXK6H_kweUXmmd-xIvz9x3VBlrO8LPCIaqhxsuYzX10hmOTD6c-vdUoSp3k/exec";
-  let SubmittingInProgress = false;
 
   function handleGoForwardStep() {
-    // console.log("Form Submitted");
-    console.log("Player Info:", { name: nameField.value });
-    console.log("Characters Info:", [
-      { role: role1.value, class: class1.value, spec: spec1.value },
-      { role: role2.value, class: class2.value, spec: spec2.value },
-      { role: role3.value, class: class3.value, spec: spec3.value },
-    ]);
-    console.log("Sales Events Info:", {
-      salesInterest,
-      otherGamesInterest,
-      movieNightInterest,
-      otherEventsComment: otherEventsComment.value,
-    });
-    console.log("Leadership Info:", {
-      recruitInterest,
-      recruitInterestComment: recruitInterestComment.value,
-      salesLeadershipInterest,
-      salesLeadershipInterestComment: salesLeadershipInterestComment.value,
-    });
-    console.log("Additional Comments:", additionComments.value);
+    setIsSubmitting(true);
 
-    // Submission
-    SubmittingInProgress = true;
     // Prep Data
     const formData = new FormData();
 
@@ -89,6 +71,7 @@ export function Summary() {
       salesLeadershipInterestComment.value
     );
     formData.append("Additional Comments", additionComments.value);
+
     // Handle Submission
     fetch(scriptUrl, {
       method: "POST",
@@ -96,22 +79,43 @@ export function Summary() {
     })
       .then((response) => {
         if (response.ok) {
-          // setIsSubmittedPopUpVisible(!isSubmittedPopupVisible);
           console.log("Form Submitted");
-          console.log(response);
-          // console.log(formData);
+          setIsSubmitting(false);
+          router.push("/rosterData");
         } else {
           throw new Error("Network response was not ok.");
         }
       })
       .then((data) => console.log(data))
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        console.error("Error:", error);
+        setIsSubmitting(false);
+      });
 
     // handleNextStep();
   }
 
   return (
     <Fragment>
+      {/* Modal */}
+      <div
+        className={`fixed inset-0 flex items-center justify-center transition-opacity duration-300 ${
+          isSubmitting ? "opacity-100 visible" : "opacity-0 collapse"
+        }`}
+      >
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="flex flex-col items-center justify-center bg-gray-600 p-5 rounded shadow-lg bg-opacity-80 unselectable font-bold text-lg text-gray-100">
+            <CircularProgress
+              size={80}
+              thickness={5}
+              variant="indeterminate"
+              sx={{ "svg circle": { stroke: "#F59E0B" } }}
+            />
+            <p className="mt-2">Submitting...</p>
+          </div>
+        </div>
+      </div>
+
       <Form.Card>
         <Form.Header
           title="Summary"
@@ -203,6 +207,7 @@ export function Summary() {
       <StepperControl
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
+        isDisabled={isSubmitting}
       />
     </Fragment>
   );

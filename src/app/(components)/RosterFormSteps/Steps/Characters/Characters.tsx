@@ -1,9 +1,7 @@
 "use client";
 
-import { User } from "lucide-react";
 import Form from "@/app/(components)/Form/FormFragments";
 import { Fragment } from "react";
-import Select from "react-select";
 import { useForm } from "@/app/hooks/use-form";
 import { useFormStep } from "@/app/hooks/use-form-step";
 import { useLocalStorage } from "@/app/hooks/use-local-storage";
@@ -203,7 +201,7 @@ export function Characters() {
       { field: role1, dispatch: dispatchRole1Field, label: "Role" },
       { field: class1, dispatch: dispatchClass1Field, label: "Class" },
       { field: spec1, dispatch: dispatchSpec1Field, label: "Specialization" },
-    ].forEach(({ field, dispatch, label }) => {
+    ].forEach(({ field, dispatch }) => {
       if (!field.value) {
         dispatch({
           type: ACTIONS.SET_ERROR,
@@ -461,6 +459,7 @@ export function Characters() {
       <StepperControl
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
+        isDisabled={false}
       />
     </Fragment>
   );

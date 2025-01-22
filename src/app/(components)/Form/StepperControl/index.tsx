@@ -3,11 +3,13 @@ import { useFormStep } from "@/app/hooks/use-form-step";
 interface StepperControlProps {
   handleGoBack: () => void;
   handleGoForwardStep: () => void;
+  isDisabled: boolean;
 }
 
 export function StepperControl({
   handleGoBack,
   handleGoForwardStep,
+  isDisabled,
 }: StepperControlProps) {
   const { currentStep, steps } = useFormStep();
 
@@ -26,9 +28,14 @@ export function StepperControl({
       </button>
       <button
         onClick={handleGoForwardStep}
+        disabled={isDisabled}
         className={`${
-          isLastStep ? "bg-lime-400" : "bg-amber-500"
-        } py-2 px-1 h-10 w-32 rounded text-sm text-gray-800 font-bold sm:text-lg`}
+          isLastStep && !isDisabled
+            ? "bg-lime-400"
+            : isDisabled
+            ? "bg-gray-600"
+            : "bg-amber-500"
+        }  py-2 px-1 h-10 w-32 rounded text-sm text-gray-800 font-bold sm:text-lg transition-colors duration-300`}
       >
         {isLastStep ? "Confirm" : "Next"}
       </button>

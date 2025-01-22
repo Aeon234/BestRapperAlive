@@ -140,6 +140,7 @@ export function Leadership() {
       <StepperControl
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
+        isDisabled={false}
       />
     </Fragment>
   );

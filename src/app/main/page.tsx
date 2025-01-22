@@ -1,16 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { FormProvider } from "../contexts/form";
 import { FormStepProvider } from "../contexts/form-step";
 import { Sidebar } from "../(components)/Form/Stepper";
 import { FormStep } from "../(components)/RosterFormSteps/Steps";
 
 const App = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const steps = ["Player", "Characters", "Leadership", "Comments", "Summary"];
-
   return (
-    <div className="RosterApp animated animatedFadeInUp fadeInUp">
+    <div className="RosterApp flex h-[600px] max-h-[820px] animated animatedFadeInUp fadeInUp">
       <FormStepProvider>
         <FormProvider>
           <div className="Stepper">

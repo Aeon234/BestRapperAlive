@@ -11,7 +11,6 @@ import { api } from "@/state/api";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 import {
-  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
@@ -20,28 +19,9 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import { PersistGate } from "redux-persist/integration/react";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
-/* REDUX PERSISTENCE */
-const createNoopStorage = () => {
-  return {
-    getItem(_key: any) {
-      return Promise.resolve(null);
-    },
-    setItem(_key: any, value: any) {
-      return Promise.resolve(value);
-    },
-    removeItem(_key: any) {
-      return Promise.resolve();
-    },
-  };
-};
-
-const storage =
-  typeof window === "undefined"
-    ? createNoopStorage()
-    : createWebStorage("local");
+const storage = createWebStorage("local");
 
 const persistConfig = {
   key: "root",
@@ -85,13 +65,6 @@ export default function SiteProvider({
     storeRef.current = makeStore();
     setupListeners(storeRef.current.dispatch);
   }
-  const persistor = persistStore(storeRef.current);
 
-  return (
-    <Provider store={storeRef.current}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      {children}
-      {/* </PersistGate> */}
-    </Provider>
-  );
+  return <Provider store={storeRef.current}>{children}</Provider>;
 }

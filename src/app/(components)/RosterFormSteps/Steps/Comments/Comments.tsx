@@ -58,6 +58,7 @@ export function Comments() {
       <StepperControl
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
+        isDisabled={false}
       />
     </Fragment>
   );

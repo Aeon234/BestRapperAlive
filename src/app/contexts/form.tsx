@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useLocalStorage } from "../hooks/use-local-storage";
 
 type Field = {
@@ -53,6 +54,9 @@ type FormContextData = {
   additionComments: Field;
   dispatchAdditionComments: React.Dispatch<any>;
   clearForm: () => void;
+  isSubmitting: boolean;
+  setIsSubmitting: (value: boolean) => void;
+  router: ReturnType<typeof useRouter>;
 };
 
 export const FormContext = createContext({
@@ -102,6 +106,9 @@ export const FormContext = createContext({
   addOns: [],
   setAddOns: () => {},
   clearForm: () => {},
+  isSubmitting: false,
+  setIsSubmitting: () => {},
+  router: {} as ReturnType<typeof useRouter>,
 } as FormContextData);
 
 export const ACTIONS = {
@@ -202,6 +209,9 @@ export const FormProvider = ({ children }: FormProviderProps) => {
 
   const { getValueFromLocalStorage, removeValueFromLocalStorage } =
     useLocalStorage();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   function clearForm() {
     removeValueFromLocalStorage("formPlayer");
@@ -362,6 +372,9 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     additionComments,
     dispatchAdditionComments,
     clearForm,
+    isSubmitting,
+    setIsSubmitting,
+    router,
   };
 
   return (

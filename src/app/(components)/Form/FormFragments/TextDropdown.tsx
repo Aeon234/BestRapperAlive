@@ -1,8 +1,5 @@
-import { User } from "lucide-react";
-
 import React from "react";
 import Select, { StylesConfig } from "react-select";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
 
 // Styles Configuration
@@ -26,7 +23,7 @@ const customStyles: StylesConfig<any, false> = {
     backgroundColor: "#2b2a33",
     color: "#ffffff",
   }),
-  singleValue: (provided, state) => ({
+  singleValue: (provided) => ({
     ...provided,
     color: "#ffffff",
   }),

@@ -1,6 +1,5 @@
 "use client";
 
-import { User } from "lucide-react";
 import Form from "@/app/(components)/Form/FormFragments";
 import { Fragment } from "react";
 import { TextInput } from "@/app/(components)/Form/FormFragments/TextInput";
@@ -68,6 +67,7 @@ export function Player() {
       <StepperControl
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
+        isDisabled={false}
       />
     </Fragment>
   );

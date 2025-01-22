@@ -23,7 +23,7 @@ interface FormStepProviderProps {
 
 export const FormStepProvider = ({ children }: FormStepProviderProps) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [steps, _] = useState([
+  const [steps] = useState([
     { title: "Player", number: 1 },
     { title: "Characters", number: 2 },
     { title: "Sales & Events", number: 3 },

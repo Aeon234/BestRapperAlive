@@ -1,6 +1,6 @@
 "use client";
 
-import { ScrollText, Coins, Gamepad2, Film, Popcorn } from "lucide-react";
+import { Coins, Gamepad2, Popcorn } from "lucide-react";
 import Form from "@/app/(components)/Form/FormFragments";
 import { Fragment } from "react";
 import { ToggleButtonDesc } from "@/app/(components)/Form/FormFragments/TextCheckbox";
@@ -108,6 +108,7 @@ export function SalesEvents() {
       <StepperControl
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
+        isDisabled={false}
       />
     </Fragment>
   );

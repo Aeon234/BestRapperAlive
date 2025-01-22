@@ -81,13 +81,13 @@ body,
   box-sizing: border-box;
   line-height: normal;
   max-width: calc(1200px + 8em);
-  max-height: 820px;
+  /* max-height: 820px; */
   /* height: 820px; */
-  height: 600px;
+  /* height: 600px; */
   /* margin-top: 5rem; */
   border: solid 2px;
   border-color: #606060;
-  display: flex;
+  /* display: flex; */
   /* background-image: url("../assets/Blog/Login_Bg.png"); */
   /* background-image: url("../assets/Blog/Login_Bg3.png"); */
   background-size: cover;
