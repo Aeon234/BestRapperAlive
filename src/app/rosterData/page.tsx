@@ -140,18 +140,23 @@ function RosterData() {
         Roster Data
       </h1>
       <div className="flex justify-between items-start space-x-4 text-center">
-        <div className=" text-white p-10 rounded shadow-lg flex-1">
+        <div className="text-white p-10 rounded shadow-lg flex-1">
           <h1 className="text-xl text-white font-bold">Role Breakdown</h1>
           <Pie data={roleData} />
         </div>
-        <div className="bg-slate-800 text-white p-10 rounded shadow-lg flex-1">
+        <div className="text-white p-10 rounded shadow-lg flex-1">
           <h1 className="text-xl text-white font-bold">Class Breakdown</h1>
           <Pie data={classData} />
         </div>
       </div>
-      <div className="bg-slate-800 text-white p-10 rounded shadow-lg flex-1">
+      <div className="text-white p-10 rounded shadow-lg flex-1">
         <h1 className="text-xl text-white font-bold text-center">
           Specialization Breakdown
+        </h1>
+      </div>
+      <div className="text-white p-10 rounded shadow-lg flex-1">
+        <h1 className="text-xl text-white font-bold text-center">
+          Submissions
         </h1>
       </div>
     </div>
