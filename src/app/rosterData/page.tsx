@@ -4,6 +4,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js/auto";
 import { Pie, Bar } from "react-chartjs-2";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -126,6 +133,11 @@ const processSheetData = (sheetData: string[][]) => {
   };
 };
 
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+}
+
 function RosterData() {
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbz0vbKj0oXK6H_kweUXmmd-xIvz9x3VBlrO8LPCIaqhxsuYzX10hmOTD6c-vdUoSp3k/exec";
@@ -136,6 +148,7 @@ function RosterData() {
   const [classCounts, setClassCounts] = useState<number[]>([]);
   const [uniqueSpecs, setUniqueSpecs] = useState<string[]>([]);
   const [specCounts, setSpecCounts] = useState<number[]>([]);
+  const [sheetData, setSheetData] = useState<string[][]>([]);
 
   useEffect(() => {
     fetch(`${scriptUrl}?method=GET`, {
@@ -161,6 +174,7 @@ function RosterData() {
         setClassCounts(classCounts);
         setUniqueSpecs(uniqueSpecs);
         setSpecCounts(specCounts);
+        setSheetData(sheetData); // Save the sheet data
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -437,6 +451,40 @@ function RosterData() {
         <h1 className="text-xl text-white font-bold text-center">
           Submissions
         </h1>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {[
+                  "Date Submitted",
+                  "Name",
+                  "Role 1",
+                  "Class 1",
+                  "Spec 1",
+                  "Role 2",
+                  "Class 2",
+                  "Spec 2",
+                  "Role 3",
+                  "Class 3",
+                  "Spec 3",
+                ].map((header) => (
+                  <TableCell key={header}>{header}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sheetData.slice(1).map((row, index) => (
+                <TableRow key={index}>
+                  {row.slice(0, 11).map((cell, cellIndex) => (
+                    <TableCell key={cellIndex}>
+                      {cellIndex === 0 ? formatDate(cell) : cell}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );

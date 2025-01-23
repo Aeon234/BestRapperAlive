@@ -45,7 +45,12 @@ export function Summary() {
     // Prep Data
     const formData = new FormData();
 
-    formData.append("Date Submitted", Date());
+    const currentDate = new Date();
+    const formattedDate = `${
+      currentDate.getMonth() + 1
+    }/${currentDate.getDate()}/${currentDate.getFullYear()}`;
+
+    formData.append("Date Submitted", formattedDate);
     formData.append("Name", nameField.value);
     formData.append("Role 1", role1.value);
     formData.append("Class 1", class1.value);
