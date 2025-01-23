@@ -374,8 +374,8 @@ function RosterData() {
       <h2 className="text-xl text-white  text-center">
         Across all 3 character preferences
       </h2>
-      <div className="flex justify-between items-start space-x-4 text-center">
-        <div className="text-white p-10 rounded shadow-lg flex-1">
+      <div className="flex flex-wrap justify-between items-start space-x-4 text-center">
+        <div className="text-white p-10 rounded shadow-lg flex-1 min-w-[300px]">
           <h1 className="text-xl text-white font-bold">Role Breakdown</h1>
           {uniqueRoles.length > 0 ? (
             <Pie data={roleData} />
@@ -390,7 +390,7 @@ function RosterData() {
             </Stack>
           )}
         </div>
-        <div className="text-white p-10 rounded shadow-lg flex-1">
+        <div className="text-white p-10 rounded shadow-lg flex-1 min-w-[300px]">
           <h1 className="text-xl text-white font-bold">Class Breakdown</h1>
           {uniqueClasses.length > 0 ? (
             <Pie data={classData} />
@@ -451,40 +451,44 @@ function RosterData() {
         <h1 className="text-xl text-white font-bold text-center">
           Submissions
         </h1>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                {[
-                  "Date Submitted",
-                  "Name",
-                  "Role 1",
-                  "Class 1",
-                  "Spec 1",
-                  "Role 2",
-                  "Class 2",
-                  "Spec 2",
-                  "Role 3",
-                  "Class 3",
-                  "Spec 3",
-                ].map((header) => (
-                  <TableCell key={header}>{header}</TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {sheetData.slice(1).map((row, index) => (
-                <TableRow key={index}>
-                  {row.slice(0, 11).map((cell, cellIndex) => (
-                    <TableCell key={cellIndex}>
-                      {cellIndex === 0 ? formatDate(cell) : cell}
-                    </TableCell>
+        {uniqueSpecs ? (
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  {[
+                    "Date Submitted",
+                    "Name",
+                    "Role 1",
+                    "Class 1",
+                    "Spec 1",
+                    "Role 2",
+                    "Class 2",
+                    "Spec 2",
+                    "Role 3",
+                    "Class 3",
+                    "Spec 3",
+                  ].map((header) => (
+                    <TableCell key={header}>{header}</TableCell>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {sheetData.slice(1).map((row, index) => (
+                  <TableRow key={index}>
+                    {row.slice(0, 11).map((cell, cellIndex) => (
+                      <TableCell key={cellIndex}>
+                        {cellIndex === 0 ? formatDate(cell) : cell}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <Skeleton sx={{ bgcolor: "grey.800" }} height={102} />
+        )}
       </div>
     </div>
   );
