@@ -12,6 +12,7 @@ import {
   TextDropdownImage,
 } from "@/app/(components)/Form/FormFragments/TextDropdown";
 import { StaticImageData } from "next/image";
+import { RotateCcw } from "lucide-react";
 
 // Role Icons
 import tankicon from "../../../../../../public/wowRoles/tank.png";
@@ -211,39 +212,37 @@ export function Characters() {
       }
     });
 
-    // // If no error in the first character, validate the second character
-    // if (!formHasError) {
-    //   [
-    //     { field: role2, dispatch: dispatchRole2Field, label: "Role" },
-    //     { field: class2, dispatch: dispatchClass2Field, label: "Class" },
-    //     { field: spec2, dispatch: dispatchSpec2Field, label: "Specialization" },
-    //   ].forEach(({ field, dispatch }) => {
-    //     if (!field.value) {
-    //       dispatch({
-    //         type: ACTIONS.SET_ERROR,
-    //         errorMessage: `Missing`,
-    //       });
-    //       formHasError = true;
-    //     }
-    //   });
-    // }
+    // If no error in the first character, validate the second character
+    if (!formHasError && role2.value) {
+      [
+        { field: class2, dispatch: dispatchClass2Field, label: "Class" },
+        { field: spec2, dispatch: dispatchSpec2Field, label: "Specialization" },
+      ].forEach(({ field, dispatch }) => {
+        if (!field.value) {
+          dispatch({
+            type: ACTIONS.SET_ERROR,
+            errorMessage: `Missing`,
+          });
+          formHasError = true;
+        }
+      });
+    }
 
-    // // If no error in the second character, validate the third character
-    // if (!formHasError) {
-    //   [
-    //     { field: role3, dispatch: dispatchRole3Field, label: "Role" },
-    //     { field: class3, dispatch: dispatchClass3Field, label: "Class" },
-    //     { field: spec3, dispatch: dispatchSpec3Field, label: "Specialization" },
-    //   ].forEach(({ field, dispatch }) => {
-    //     if (!field.value) {
-    //       dispatch({
-    //         type: ACTIONS.SET_ERROR,
-    //         errorMessage: `Missing`,
-    //       });
-    //       formHasError = true;
-    //     }
-    //   });
-    // }
+    // If no error in the second character, validate the third character
+    if (!formHasError && role3.value) {
+      [
+        { field: class3, dispatch: dispatchClass3Field, label: "Class" },
+        { field: spec3, dispatch: dispatchSpec3Field, label: "Specialization" },
+      ].forEach(({ field, dispatch }) => {
+        if (!field.value) {
+          dispatch({
+            type: ACTIONS.SET_ERROR,
+            errorMessage: `Missing`,
+          });
+          formHasError = true;
+        }
+      });
+    }
 
     return !formHasError;
   }
@@ -263,6 +262,20 @@ export function Characters() {
       );
       handleNextStep();
     }
+  }
+
+  function resetCharacter2() {
+    dispatchRole2Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchClass2Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchSpec2Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchRole3Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchClass3Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchSpec3Field({ type: ACTIONS.SET_VALUE, value: "" });
+  }
+  function resetCharacter3() {
+    dispatchRole3Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchClass3Field({ type: ACTIONS.SET_VALUE, value: "" });
+    dispatchSpec3Field({ type: ACTIONS.SET_VALUE, value: "" });
   }
 
   const uniqueRoles = Array.from(
@@ -420,6 +433,17 @@ export function Characters() {
               }
               disabled={!role1.value || !class1.value || !spec1.value}
             />
+            <div className="flex flex-col gap-1 w-[220px] justify-end mb-1">
+              <button
+                onClick={resetCharacter2}
+                className={`${
+                  role2.value ? "bg-amber-500" : "bg-gray-500"
+                } py-[6px] px-[6px] h-10 w-10 rounded text-sm text-gray-800 font-bold sm:text-lg transition-colors duration-300`}
+                disabled={!role2.value}
+              >
+                <RotateCcw />
+              </button>
+            </div>
           </div>
           {/* Character 3 */}
           <div className="mb-0 unselectable text-xl font-semibold text-gray-100">
@@ -486,6 +510,17 @@ export function Characters() {
               }
               disabled={!role2.value || !class2.value || !spec2.value}
             />
+            <div className="flex flex-col gap-1 w-[220px] justify-end mb-1">
+              <button
+                onClick={resetCharacter3}
+                className={`${
+                  role3.value ? "bg-amber-500" : "bg-gray-500"
+                } py-[6px] px-[6px] h-10 w-10 rounded text-sm text-gray-800 font-bold sm:text-lg transition-colors duration-300`}
+                disabled={!role3.value}
+              >
+                <RotateCcw />
+              </button>
+            </div>
           </div>
         </div>
       </Form.Card>
