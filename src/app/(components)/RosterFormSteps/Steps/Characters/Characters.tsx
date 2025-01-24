@@ -159,10 +159,16 @@ const roleIcons = {
   DPS: dpsicon,
 };
 
-const getFilteredSpecializations = (roleValue: string, classValue: string) =>
+const getFilteredSpecializations = (
+  roleValue: string,
+  classValue: string,
+  excludeSpecs: string[] = []
+) =>
   wowData
     .find((wowClass) => wowClass.class === classValue)
-    ?.specializations.filter((spec) => spec.role === roleValue)
+    ?.specializations.filter(
+      (spec) => spec.role === roleValue && !excludeSpecs.includes(spec.spec)
+    )
     .map((spec) => ({
       value: spec.spec,
       label: spec.spec,
@@ -296,6 +302,8 @@ export function Characters() {
         label: wowClass.class,
       }));
 
+  const excludeSpecs = [spec1.value, spec2.value];
+
   return (
     <Fragment>
       <Form.Card>
@@ -418,7 +426,9 @@ export function Characters() {
               className="w-[220px]"
               label="Specialization"
               placeholder="Select a specialization"
-              options={getFilteredSpecializations(role2.value, class2.value)}
+              options={getFilteredSpecializations(role2.value, class2.value, [
+                spec1.value,
+              ])}
               value={spec2.value}
               onChange={(value) =>
                 dispatchSpec2Field({
@@ -495,7 +505,11 @@ export function Characters() {
               className="w-[220px]"
               label="Specialization"
               placeholder="Select a specialization"
-              options={getFilteredSpecializations(role3.value, class3.value)}
+              options={getFilteredSpecializations(
+                role3.value,
+                class3.value,
+                excludeSpecs
+              )}
               value={spec3.value}
               onChange={(value) =>
                 dispatchSpec3Field({
