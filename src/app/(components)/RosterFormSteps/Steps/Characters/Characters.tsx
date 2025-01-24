@@ -211,39 +211,39 @@ export function Characters() {
       }
     });
 
-    // If no error in the first character, validate the second character
-    if (!formHasError) {
-      [
-        { field: role2, dispatch: dispatchRole2Field, label: "Role" },
-        { field: class2, dispatch: dispatchClass2Field, label: "Class" },
-        { field: spec2, dispatch: dispatchSpec2Field, label: "Specialization" },
-      ].forEach(({ field, dispatch }) => {
-        if (!field.value) {
-          dispatch({
-            type: ACTIONS.SET_ERROR,
-            errorMessage: `Missing`,
-          });
-          formHasError = true;
-        }
-      });
-    }
+    // // If no error in the first character, validate the second character
+    // if (!formHasError) {
+    //   [
+    //     { field: role2, dispatch: dispatchRole2Field, label: "Role" },
+    //     { field: class2, dispatch: dispatchClass2Field, label: "Class" },
+    //     { field: spec2, dispatch: dispatchSpec2Field, label: "Specialization" },
+    //   ].forEach(({ field, dispatch }) => {
+    //     if (!field.value) {
+    //       dispatch({
+    //         type: ACTIONS.SET_ERROR,
+    //         errorMessage: `Missing`,
+    //       });
+    //       formHasError = true;
+    //     }
+    //   });
+    // }
 
-    // If no error in the second character, validate the third character
-    if (!formHasError) {
-      [
-        { field: role3, dispatch: dispatchRole3Field, label: "Role" },
-        { field: class3, dispatch: dispatchClass3Field, label: "Class" },
-        { field: spec3, dispatch: dispatchSpec3Field, label: "Specialization" },
-      ].forEach(({ field, dispatch }) => {
-        if (!field.value) {
-          dispatch({
-            type: ACTIONS.SET_ERROR,
-            errorMessage: `Missing`,
-          });
-          formHasError = true;
-        }
-      });
-    }
+    // // If no error in the second character, validate the third character
+    // if (!formHasError) {
+    //   [
+    //     { field: role3, dispatch: dispatchRole3Field, label: "Role" },
+    //     { field: class3, dispatch: dispatchClass3Field, label: "Class" },
+    //     { field: spec3, dispatch: dispatchSpec3Field, label: "Specialization" },
+    //   ].forEach(({ field, dispatch }) => {
+    //     if (!field.value) {
+    //       dispatch({
+    //         type: ACTIONS.SET_ERROR,
+    //         errorMessage: `Missing`,
+    //       });
+    //       formHasError = true;
+    //     }
+    //   });
+    // }
 
     return !formHasError;
   }
