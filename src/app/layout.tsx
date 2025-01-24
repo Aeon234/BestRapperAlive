@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "BRA Roster Application",
-  description: "Application for next season's roster for <Best Rapper Alive>",
+  description: "The War Within - Season 2",
 };
 
 export default function RootLayout({
