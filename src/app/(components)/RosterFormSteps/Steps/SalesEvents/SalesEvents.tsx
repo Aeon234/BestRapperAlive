@@ -56,7 +56,7 @@ export function SalesEvents() {
         />
 
         <div className="mt-5 flex flex-col gap-4">
-          <div className="flex gap-8 ml-4">
+          <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 lg:ml-4">
             <ToggleButtonDesc
               className=""
               label="Sales"

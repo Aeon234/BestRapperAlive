@@ -39,7 +39,7 @@ export function FormStep() {
   const step = steps.find(({ step }) => step === currentStep);
 
   return (
-    <div className="flex flex-col flex-1 justify-between">
+    <div className="flex flex-col flex-1 justify-between min-w-0">
       {step && step.component()}
     </div>
   );
