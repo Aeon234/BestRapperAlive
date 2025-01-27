@@ -29,7 +29,7 @@ export function TextCheckbox({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {label}
         </label>
         {hasError && (
@@ -40,7 +40,7 @@ export function TextCheckbox({
       </div>
       <div className="relative w-full">
         <FormControlLabel
-          className="text-gray-100 text-xs sm:text-lg font-medium"
+          className="text-gray-100 text-base sm:text-lg font-medium"
           control={
             <Checkbox
               checked={value}
@@ -104,7 +104,7 @@ export function StandaloneToggleButton({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {/* {label} */}
         </label>
         {hasError && (
@@ -168,7 +168,7 @@ export function ToggleButtonDesc({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {/* {label} */}
         </label>
         {hasError && (

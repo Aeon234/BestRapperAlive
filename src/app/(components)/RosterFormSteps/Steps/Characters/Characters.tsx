@@ -317,7 +317,7 @@ export function Characters() {
           <div className="mb-0 unselectable text-xl font-semibold text-gray-100">
             <p>First Choice*</p>
           </div>
-          <div className="flex gap-8 ml-4">
+          <div className="lg:flex gap-8 ml-4">
             <TextDropdownImage
               className="w-[180px]"
               label="Role"
@@ -380,7 +380,7 @@ export function Characters() {
           <div className="mb-0 unselectable text-xl font-semibold text-gray-100">
             <p>Second Choice</p>
           </div>
-          <div className="flex gap-8 ml-4">
+          <div className="lg:flex gap-8 ml-4">
             <TextDropdownImage
               className="w-[180px]"
               label="Role"
@@ -422,44 +422,46 @@ export function Characters() {
               }
               disabled={!role1.value || !class1.value || !spec1.value}
             />
-            <TextDropdown
-              className="w-[220px]"
-              label="Specialization"
-              placeholder="Select a specialization"
-              options={getFilteredSpecializations(role2.value, class2.value, [
-                spec1.value,
-              ])}
-              value={spec2.value}
-              onChange={(value) =>
-                dispatchSpec2Field({
-                  type: ACTIONS.SET_VALUE,
-                  value: value || "",
-                })
-              }
-              errorMessage={spec2.errorMessage}
-              hasError={spec2.hasError}
-              clearError={() =>
-                dispatchSpec2Field({ type: ACTIONS.CLEAR_ERROR })
-              }
-              disabled={!role1.value || !class1.value || !spec1.value}
-            />
-            <div className="flex flex-col gap-1 w-[220px] justify-end mb-1">
-              <button
-                onClick={resetCharacter2}
-                className={`${
-                  role2.value ? "bg-amber-500" : "bg-gray-500"
-                } py-[6px] px-[6px] h-10 w-10 rounded text-sm text-gray-800 font-bold sm:text-lg transition-colors duration-300`}
-                disabled={!role2.value}
-              >
-                <RotateCcw />
-              </button>
+            <div className="flex gap-2 lg:gap-4">
+              <TextDropdown
+                className="w-[220px]"
+                label="Specialization"
+                placeholder="Select a specialization"
+                options={getFilteredSpecializations(role2.value, class2.value, [
+                  spec1.value,
+                ])}
+                value={spec2.value}
+                onChange={(value) =>
+                  dispatchSpec2Field({
+                    type: ACTIONS.SET_VALUE,
+                    value: value || "",
+                  })
+                }
+                errorMessage={spec2.errorMessage}
+                hasError={spec2.hasError}
+                clearError={() =>
+                  dispatchSpec2Field({ type: ACTIONS.CLEAR_ERROR })
+                }
+                disabled={!role1.value || !class1.value || !spec1.value}
+              />
+              <div className="flex flex-col gap-1 w-[220px] justify-end mb-1">
+                <button
+                  onClick={resetCharacter2}
+                  className={`${
+                    role2.value ? "bg-amber-500" : "bg-gray-500"
+                  } py-[6px] px-[6px] h-10 w-10 rounded text-sm text-gray-800 font-bold lg:text-lg transition-colors duration-300`}
+                  disabled={!role2.value}
+                >
+                  <RotateCcw />
+                </button>
+              </div>
             </div>
           </div>
           {/* Character 3 */}
           <div className="mb-0 unselectable text-xl font-semibold text-gray-100">
             <p>Third Choice</p>
           </div>
-          <div className="flex gap-8 ml-4">
+          <div className="lg:flex gap-8 ml-4">
             <TextDropdownImage
               className="w-[180px]"
               label="Role"
@@ -501,39 +503,41 @@ export function Characters() {
               }
               disabled={!role2.value || !class2.value || !spec2.value}
             />
-            <TextDropdown
-              className="w-[220px]"
-              label="Specialization"
-              placeholder="Select a specialization"
-              options={getFilteredSpecializations(
-                role3.value,
-                class3.value,
-                excludeSpecs
-              )}
-              value={spec3.value}
-              onChange={(value) =>
-                dispatchSpec3Field({
-                  type: ACTIONS.SET_VALUE,
-                  value: value || "",
-                })
-              }
-              errorMessage={spec3.errorMessage}
-              hasError={spec3.hasError}
-              clearError={() =>
-                dispatchSpec3Field({ type: ACTIONS.CLEAR_ERROR })
-              }
-              disabled={!role2.value || !class2.value || !spec2.value}
-            />
-            <div className="flex flex-col gap-1 w-[220px] justify-end mb-1">
-              <button
-                onClick={resetCharacter3}
-                className={`${
-                  role3.value ? "bg-amber-500" : "bg-gray-500"
-                } py-[6px] px-[6px] h-10 w-10 rounded text-sm text-gray-800 font-bold sm:text-lg transition-colors duration-300`}
-                disabled={!role3.value}
-              >
-                <RotateCcw />
-              </button>
+            <div className="flex gap-2 lg:gap-4">
+              <TextDropdown
+                className="w-[220px]"
+                label="Specialization"
+                placeholder="Select a specialization"
+                options={getFilteredSpecializations(
+                  role3.value,
+                  class3.value,
+                  excludeSpecs
+                )}
+                value={spec3.value}
+                onChange={(value) =>
+                  dispatchSpec3Field({
+                    type: ACTIONS.SET_VALUE,
+                    value: value || "",
+                  })
+                }
+                errorMessage={spec3.errorMessage}
+                hasError={spec3.hasError}
+                clearError={() =>
+                  dispatchSpec3Field({ type: ACTIONS.CLEAR_ERROR })
+                }
+                disabled={!role2.value || !class2.value || !spec2.value}
+              />
+              <div className="flex flex-col gap-1 w-[220px] justify-end mb-1">
+                <button
+                  onClick={resetCharacter3}
+                  className={`${
+                    role3.value ? "bg-amber-500" : "bg-gray-500"
+                  } py-[6px] px-[6px] h-10 w-10 rounded text-sm text-gray-800 font-bold lg:text-lg transition-colors duration-300`}
+                  disabled={!role3.value}
+                >
+                  <RotateCcw />
+                </button>
+              </div>
             </div>
           </div>
         </div>

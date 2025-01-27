@@ -31,7 +31,7 @@ export function TextInput({
       }`}
     >
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {label}
         </label>
         {hasError && (
@@ -92,7 +92,7 @@ export function TextInputLong({
       }`}
     >
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {label}
         </label>
       </div>

@@ -7,7 +7,7 @@ import { FormStep } from "../(components)/RosterFormSteps/Steps";
 
 const App = () => {
   return (
-    <div className="RosterApp flex h-[600px] max-h-[820px] animated animatedFadeInUp fadeInUp">
+    <div className="RosterApp lg:flex lg:h-[600px] lg:max-h-[820px] animated animatedFadeInUp fadeInUp">
       <FormStepProvider>
         <FormProvider>
           <div className="Stepper">

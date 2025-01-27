@@ -9,10 +9,10 @@ export function Sidebar() {
   return (
     <div
       className="FormStepper flex justify-center items-start pt-8 h-[172px] w-full bg-no-repeat bg-auto bg-bottom
-      sm:flex-col sm:justify-start sm:items-start sm:p-8 sm:w-[260px] sm:h-full sm:bg-cover sm:rounded-lg sm:bg-left"
+      lg:flex-col lg:justify-start lg:items-start lg:p-8 lg:w-[260px] lg:h-full lg:bg-cover lg:rounded-lg lg:bg-left"
       style={{ backgroundImage: `url(${bg.src})` }} // Dynamically set the background image
     >
-      <div className="flex flex-row gap-4 sm:flex-col sm:gap-8 top-0 bottom-0 m-auto unselectable">
+      <div className="flex flex-row gap-4 lg:flex-col lg:gap-8 top-0 bottom-0 m-auto unselectable">
         {steps.map((step) => {
           return (
             <Stepper

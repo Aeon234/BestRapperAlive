@@ -86,7 +86,7 @@ export function TextDropdown({
   return (
     <div className={`flex flex-col gap-1 ${className}`}>
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {label}
         </label>
         {hasError && (
@@ -154,7 +154,7 @@ export function TextDropdownImage({
   return (
     <div className={`flex flex-col gap-1 ${className}`}>
       <div className="flex items-center justify-between">
-        <label className="text-gray-100 text-xs sm:text-lg font-medium">
+        <label className="text-gray-100 text-base sm:text-lg font-medium">
           {label}
         </label>
         {hasError && (

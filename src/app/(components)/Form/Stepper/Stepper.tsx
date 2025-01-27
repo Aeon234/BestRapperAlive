@@ -31,7 +31,7 @@ export function Stepper({
           {isCompleted ? <span>&#10004;</span> : step.number}
         </span>
       </div>
-      <div className="hidden sm:flex sm:flex-col sm:gap-2">
+      <div className="hidden md:flex md:flex-col md:gap-2">
         <span
           className={`text-base ${
             isActive
