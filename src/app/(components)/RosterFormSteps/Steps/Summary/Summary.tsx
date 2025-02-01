@@ -2,12 +2,10 @@
 
 import Form from "@/app/(components)/Form/FormFragments";
 import { Fragment, useContext } from "react";
-// import { useRouter } from "next/router";
 import { useFormStep } from "@/app/hooks/use-form-step";
 import { StepperControl } from "@/app/(components)/Form/StepperControl";
 import { FormContext } from "@/app/contexts/form";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useEffect } from "react";
 
 export function Summary() {
   const { handlePreviousStep } = useFormStep();
