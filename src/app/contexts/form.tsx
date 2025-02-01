@@ -43,6 +43,14 @@ type FormContextData = {
   setMovieNightInterest: React.Dispatch<React.SetStateAction<boolean>>;
   otherEventsComment: Field;
   dispatchOtherEventsComment: React.Dispatch<any>;
+  meleeOfficerInterest: boolean;
+  setMeleeOfficerInterest: React.Dispatch<React.SetStateAction<boolean>>;
+  meleeOfficerInterestComment: Field;
+  dispatchmeleeOfficerInterestComment: React.Dispatch<any>;
+  rangedOfficerInterest: boolean;
+  setRangedOfficerInterest: React.Dispatch<React.SetStateAction<boolean>>;
+  rangedOfficerInterestComment: Field;
+  dispatchRangedOfficerInterestComment: React.Dispatch<any>;
   recruitInterest: boolean;
   setRecruitInterest: React.Dispatch<React.SetStateAction<boolean>>;
   recruitInterestComment: Field;
@@ -54,6 +62,8 @@ type FormContextData = {
   additionComments: Field;
   dispatchAdditionComments: React.Dispatch<any>;
   clearForm: () => void;
+  characterError: string;
+  setCharacterError: React.Dispatch<any>;
   isSubmitting: boolean;
   setIsSubmitting: (value: boolean) => void;
   router: ReturnType<typeof useRouter>;
@@ -88,10 +98,22 @@ export const FormContext = createContext({
   setMovieNightInterest: () => {},
   otherEventsComment: initialState,
   dispatchOtherEventsComment: () => {},
+
+  meleeOfficerInterest: false,
+  setMeleeOfficerInterest: () => {},
+  meleeOfficerInterestComment: initialState,
+  dispatchmeleeOfficerInterestComment: () => {},
+
+  rangedOfficerInterest: false,
+  setRangedOfficerInterest: () => {},
+  rangedOfficerInterestComment: initialState,
+  dispatchRangedOfficerInterestComment: () => {},
+
   recruitInterest: false,
   setRecruitInterest: () => {},
   recruitInterestComment: initialState,
   dispatchRecruitInterestComment: () => {},
+
   salesLeadershipInterest: false,
   setsalesLeadershipInterest: () => {},
   salesLeadershipInterestComment: initialState,
@@ -99,13 +121,11 @@ export const FormContext = createContext({
   additionComments: initialState,
   dispatchAdditionComments: () => {},
 
-  isYearly: false,
-  setIsYearly: () => {},
-  selectedPlan: null as any,
-  setSelectedPlan: () => {},
-  addOns: [],
-  setAddOns: () => {},
   clearForm: () => {},
+
+  characterError: "",
+  setCharacterError: () => {},
+
   isSubmitting: false,
   setIsSubmitting: () => {},
   router: {} as ReturnType<typeof useRouter>,
@@ -189,6 +209,14 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   );
 
   // Leadership
+  const [meleeOfficerInterest, setMeleeOfficerInterest] =
+    useState<boolean>(false);
+  const [meleeOfficerInterestComment, dispatchmeleeOfficerInterestComment] =
+    useReducer(handleFormState, initialState);
+  const [rangedOfficerInterest, setRangedOfficerInterest] =
+    useState<boolean>(false);
+  const [rangedOfficerInterestComment, dispatchRangedOfficerInterestComment] =
+    useReducer(handleFormState, initialState);
   const [recruitInterest, setRecruitInterest] = useState<boolean>(false);
   const [recruitInterestComment, dispatchRecruitInterestComment] = useReducer(
     handleFormState,
@@ -209,6 +237,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
 
   const { getValueFromLocalStorage, removeValueFromLocalStorage } =
     useLocalStorage();
+
+  const [characterError, setCharacterError] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -233,6 +263,13 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     setSalesInterest(false);
     setOtherGamesInterest(false);
     setMovieNightInterest(false);
+    setMeleeOfficerInterest(false);
+    dispatchmeleeOfficerInterestComment({ type: ACTIONS.SET_VALUE, value: "" });
+    setRangedOfficerInterest(false);
+    dispatchRangedOfficerInterestComment({
+      type: ACTIONS.SET_VALUE,
+      value: "",
+    });
     setRecruitInterest(false);
     dispatchRecruitInterestComment({ type: ACTIONS.SET_VALUE, value: "" });
     setsalesLeadershipInterest(false);
@@ -241,6 +278,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       value: "",
     });
     dispatchOtherEventsComment({ type: ACTIONS.SET_VALUE, value: "" });
+    setCharacterError("");
   }
 
   useEffect(() => {
@@ -308,6 +346,22 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     const leadershipInfoFromLocalStorage =
       getValueFromLocalStorage("formLeadership");
     if (leadershipInfoFromLocalStorage) {
+      setMeleeOfficerInterest(
+        leadershipInfoFromLocalStorage.meleeOfficerInterest
+      );
+      dispatchmeleeOfficerInterestComment({
+        type: ACTIONS.SET_VALUE,
+        value: leadershipInfoFromLocalStorage.meleeOfficerInterestComment,
+      });
+
+      setRangedOfficerInterest(
+        leadershipInfoFromLocalStorage.rangedOfficerInterest
+      );
+      dispatchRangedOfficerInterestComment({
+        type: ACTIONS.SET_VALUE,
+        value: leadershipInfoFromLocalStorage.rangedOfficerInterestComment,
+      });
+
       setRecruitInterest(leadershipInfoFromLocalStorage.recruitInterest);
       dispatchRecruitInterestComment({
         type: ACTIONS.SET_VALUE,
@@ -361,6 +415,14 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     setMovieNightInterest,
     otherEventsComment,
     dispatchOtherEventsComment,
+    meleeOfficerInterest,
+    setMeleeOfficerInterest,
+    meleeOfficerInterestComment,
+    dispatchmeleeOfficerInterestComment,
+    rangedOfficerInterest,
+    setRangedOfficerInterest,
+    rangedOfficerInterestComment,
+    dispatchRangedOfficerInterestComment,
     recruitInterest,
     setRecruitInterest,
     recruitInterestComment,
@@ -372,6 +434,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     additionComments,
     dispatchAdditionComments,
     clearForm,
+    characterError,
+    setCharacterError,
     isSubmitting,
     setIsSubmitting,
     router,

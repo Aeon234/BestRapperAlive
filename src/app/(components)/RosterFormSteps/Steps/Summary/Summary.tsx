@@ -7,6 +7,7 @@ import { useFormStep } from "@/app/hooks/use-form-step";
 import { StepperControl } from "@/app/(components)/Form/StepperControl";
 import { FormContext } from "@/app/contexts/form";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useEffect } from "react";
 
 export function Summary() {
   const { handlePreviousStep } = useFormStep();
@@ -25,21 +26,53 @@ export function Summary() {
     otherGamesInterest,
     movieNightInterest,
     otherEventsComment,
+    meleeOfficerInterest,
+    meleeOfficerInterestComment,
+    rangedOfficerInterest,
+    rangedOfficerInterestComment,
     recruitInterest,
     recruitInterestComment,
     salesLeadershipInterest,
     salesLeadershipInterestComment,
     additionComments,
+    characterError,
+    setCharacterError,
     isSubmitting,
     setIsSubmitting,
     router,
   } = useContext(FormContext);
-  // const router = useRouter();
 
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbz0vbKj0oXK6H_kweUXmmd-xIvz9x3VBlrO8LPCIaqhxsuYzX10hmOTD6c-vdUoSp3k/exec";
 
   function handleGoForwardStep() {
+    // Validate before beginning submission
+    const characters = [
+      { role: role1.value, class: class1.value, spec: spec1.value },
+      { role: role2.value, class: class2.value, spec: spec2.value },
+      { role: role3.value, class: class3.value, spec: spec3.value },
+    ];
+
+    const isValidEntry = characters.some(
+      (char) => char.role && char.class && char.spec
+    );
+
+    const hasPartialEntry = characters.some(
+      (char) =>
+        (char.role || char.class || char.spec) &&
+        !(char.role && char.class && char.spec)
+    );
+
+    if (!isValidEntry || hasPartialEntry) {
+      setCharacterError(
+        "Characters are missing or incomplete. Go back and fill out the character sheet before submitting again."
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Clear existing errors
+    setCharacterError(null);
     setIsSubmitting(true);
 
     // Prep Data
@@ -52,19 +85,34 @@ export function Summary() {
 
     formData.append("Date Submitted", formattedDate);
     formData.append("Name", nameField.value);
-    formData.append("Role 1", role1.value);
-    formData.append("Class 1", class1.value);
-    formData.append("Spec 1", spec1.value);
-    formData.append("Role 2", role2.value);
-    formData.append("Class 2", class2.value);
-    formData.append("Spec 2", spec2.value);
-    formData.append("Role 3", role3.value);
-    formData.append("Class 3", class3.value);
-    formData.append("Spec 3", spec3.value);
+    formData.append("Role 1", role1.value ?? "");
+    formData.append("Class 1", class1.value ?? "");
+    formData.append("Spec 1", spec1.value ?? "");
+    formData.append("Role 2", role2.value ?? "");
+    formData.append("Class 2", class2.value ?? "");
+    formData.append("Spec 2", spec2.value ?? "");
+    formData.append("Role 3", role3.value ?? "");
+    formData.append("Class 3", class3.value ?? "");
+    formData.append("Spec 3", spec3.value ?? "");
     formData.append("Sales Interest", salesInterest.toString());
     formData.append("Other Games Interest", otherGamesInterest.toString());
     formData.append("Movie Night Interest", movieNightInterest.toString());
     formData.append("Other Events Comments", otherEventsComment.value);
+
+    formData.append("Melee Officer Interest", meleeOfficerInterest.toString());
+    formData.append(
+      "Melee Officer Interest Comments",
+      meleeOfficerInterestComment.value
+    );
+    formData.append(
+      "Ranged Officer Interest",
+      rangedOfficerInterest.toString()
+    );
+    formData.append(
+      "Ranged Officer Interest Comments",
+      rangedOfficerInterestComment.value
+    );
+
     formData.append("Recruiting Interest", recruitInterest.toString());
     formData.append(
       "Recruiting Interest Comments",
@@ -140,7 +188,18 @@ export function Summary() {
 
           {/* Characters Info */}
           <div>
-            <h2 className="text-lg font-semibold text-gray-100">Characters</h2>
+            <h2
+              className={`text-lg font-semibold ${
+                characterError ? "text-red-500" : "text-gray-100"
+              }`}
+            >
+              Characters
+            </h2>
+            {characterError && (
+              <p className="text-red-500 text-sm">
+                {characterError?.toString()}
+              </p>
+            )}
             {[role1, role2, role3].map((role, index) => {
               const characterClass = [class1, class2, class3][index];
               const spec = [spec1, spec2, spec3][index];
@@ -179,6 +238,25 @@ export function Summary() {
           {/* Leadership Info */}
           <div>
             <h2 className="text-lg font-semibold text-gray-100">Leadership</h2>
+
+            <div className="flex justify-left items-center gap-4">
+              <p className="text-gray-300">
+                Recruitment: {meleeOfficerInterest ? "Yes" : "No"}
+              </p>
+              <p className="text-gray-300">
+                Recruitment Comments: {meleeOfficerInterestComment.value}
+              </p>
+            </div>
+
+            <div className="flex justify-left items-center gap-4">
+              <p className="text-gray-300">
+                Recruitment: {rangedOfficerInterest ? "Yes" : "No"}
+              </p>
+              <p className="text-gray-300">
+                Recruitment Comments: {rangedOfficerInterestComment.value}
+              </p>
+            </div>
+
             <div className="flex justify-left items-center gap-4">
               <p className="text-gray-300">
                 Recruitment: {recruitInterest ? "Yes" : "No"}

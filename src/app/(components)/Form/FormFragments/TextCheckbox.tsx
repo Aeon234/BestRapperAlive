@@ -1,4 +1,11 @@
-import { Coins, Gamepad2, Popcorn, ScrollText } from "lucide-react";
+import {
+  Coins,
+  Gamepad2,
+  Popcorn,
+  ScrollText,
+  Sword,
+  Wand,
+} from "lucide-react";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import * as React from "react";
@@ -84,6 +91,8 @@ const getColor = (Icon: LucideIcon) => {
   if (Icon === Popcorn) return "#EE82EE";
   if (Icon === Gamepad2) return "#FF033E";
   if (Icon === ScrollText) return "#32de84";
+  if (Icon === Sword) return " #dc3c31";
+  if (Icon === Wand) return "#1e87db";
   return "#505050";
 };
 
