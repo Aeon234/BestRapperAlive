@@ -162,12 +162,17 @@ const roleIcons = {
 const getFilteredSpecializations = (
   roleValue: string,
   classValue: string,
-  excludeSpecs: string[] = []
+  excludeSpecs: { class: string; spec: string }[] = []
 ) =>
   wowData
     .find((wowClass) => wowClass.class === classValue)
     ?.specializations.filter(
-      (spec) => spec.role === roleValue && !excludeSpecs.includes(spec.spec)
+      (spec) =>
+        spec.role === roleValue &&
+        !excludeSpecs.some(
+          (excludeSpec) =>
+            excludeSpec.class === classValue && excludeSpec.spec === spec.spec
+        )
     )
     .map((spec) => ({
       value: spec.spec,
@@ -302,7 +307,10 @@ export function Characters() {
         label: wowClass.class,
       }));
 
-  const excludeSpecs = [spec1.value, spec2.value];
+  const excludeSpecs = [
+    { class: class1.value, spec: spec1.value },
+    { class: class2.value, spec: spec2.value },
+  ];
 
   return (
     <Fragment>
@@ -428,7 +436,7 @@ export function Characters() {
                 label="Specialization"
                 placeholder="Select a specialization"
                 options={getFilteredSpecializations(role2.value, class2.value, [
-                  spec1.value,
+                  { class: class1.value, spec: spec1.value },
                 ])}
                 value={spec2.value}
                 onChange={(value) =>
