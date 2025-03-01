@@ -95,17 +95,20 @@ const processSheetData = (sheetData: string[][]) => {
 
   // Step 2.1: Extract roles
   const roles = dataRows
-    .flatMap((row) => [row[2], row[5], row[8]])
+    // .flatMap((row) => [row[2], row[5], row[8]])
+    .flatMap((row) => [row[2]])
     .filter((role) => role && role !== "undefined");
 
   // Step 2.2: Extract classes
   const classes = dataRows
-    .flatMap((row) => [row[3], row[6], row[9]])
+    // .flatMap((row) => [row[3], row[6], row[9]])
+    .flatMap((row) => [row[3]])
     .filter((cls) => cls && cls !== "undefined");
 
   // Step 2.3: Extract specializations
   const specializations = dataRows
-    .flatMap((row) => [row[4], row[7], row[10]])
+    // .flatMap((row) => [row[4], row[7], row[10]])
+    .flatMap((row) => [row[4]])
     .filter((spec) => spec && spec !== "undefined");
 
   // Step 3.1: Count occurrences of each role
