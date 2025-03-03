@@ -15,6 +15,7 @@ function Wishlist() {
     }[]
   >([]);
   const [isSubmitting, setIsSubmitting] = useState(false); // New state for submission status
+  const [showPopup, setShowPopup] = useState(false); // New state for showing popup
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -29,7 +30,6 @@ function Wishlist() {
     }
   }, []);
 
-  // 1 wep, 2 trinkets, 1 rare item
   const items = [
     {
       id: 230197,
@@ -561,7 +561,11 @@ function Wishlist() {
       .then(() => {
         console.log("All forms submitted");
         setPlayerName(""); // Reset player name
-        setSelectedItems([]); // Reset selected items
+        setShowPopup(true); // Show popup
+        setTimeout(() => {
+          setShowPopup(false); // Hide popup after 3 seconds
+          window.location.reload(); // Reload the page
+        }, 5000);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -584,6 +588,29 @@ function Wishlist() {
         strategy="lazyOnload"
       /> */}
       <div className="RosterApp block animated animatedFadeInUp fadeInUp p-6">
+        {/* Popup message */}
+        {showPopup && (
+          <div className="absolute z-50  top-[50%] text-center font-extrabold p-6 text-white">
+            <div className="fixed inset-0 flex items-center justify-center transition-opacity duration-300">
+              <div className="absolute inset-0 flex items-center justify-center bg-black">
+                <div className="flex flex-col items-center justify-center bg-gray-800 border-2 border-amber-500 p-5 rounded-md shadow-lg bg-opacity-90 unselectable font-bold text-lg text-gray-100 w-[50%] h-[25%]">
+                  <p className="mt-2 text-green-500">Wishlist Submitted</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {isSubmitting && (
+          <div className="absolute z-40  top-[50%] text-center font-extrabold p-6 text-white">
+            <div className="fixed inset-0 flex items-center justify-center transition-opacity duration-300">
+              <div className="absolute inset-0 flex items-center justify-center bg-black">
+                <div className="flex flex-col items-center justify-center bg-gray-800 border-2  p-5 rounded-md shadow-lg bg-opacity-90 unselectable font-bold text-lg text-gray-100 w-[50%] h-[25%]">
+                  <p className="mt-2">Submission in Progress...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <h1 className="text-white text-center text-xl font-bold mb-10">
           Liberation of Undermine Item Wishlist
         </h1>
@@ -600,7 +627,6 @@ function Wishlist() {
             px-4 py-3 rounded border-gray-500
             border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
             placeholder:text-grey-900 w-full
-            
             `}
                 type="text"
                 placeholder="Enter your name"
