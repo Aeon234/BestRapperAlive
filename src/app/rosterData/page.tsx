@@ -370,7 +370,7 @@ function RosterData() {
   };
 
   return (
-    <div className="RosterApp animated animatedFadeInUp fadeInUp ">
+    <div className="RosterApp animated animatedFadeInUp fadeInUp">
       <h1 className="text-2xl text-white font-bold text-center m-2">
         Roster Data
       </h1>
