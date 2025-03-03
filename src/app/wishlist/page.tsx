@@ -4,7 +4,7 @@ import Script from "next/script";
 
 import WowheadItemSelection from "../(components)/WowheadItem";
 
-function wishlist() {
+function Wishlist() {
   const [playerName, setPlayerName] = useState("");
   const [selectedItems, setSelectedItems] = useState<
     {
@@ -14,6 +14,7 @@ function wishlist() {
       name: string;
     }[]
   >([]);
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for submission status
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -529,13 +530,14 @@ function wishlist() {
   const scriptUrl =
     "https://script.google.com/macros/s/AKfycbzUrTsyE4dBMxd2tengCw297kTRp5Eqs0CDo28kT3z9Lvg466qeM5g-IaIZTdQa00eV4Q/exec";
   function handleSubmit() {
+    setIsSubmitting(true); // Disable the submit button
     // Prep Data
     const currentDate = new Date();
     const formattedDate = `${
       currentDate.getMonth() + 1
     }/${currentDate.getDate()}/${currentDate.getFullYear()}`;
 
-    selectedItems.forEach((item) => {
+    const submissionPromises = selectedItems.map((item) => {
       const formData = new FormData();
       formData.append("Raw Date", Date());
       formData.append("Date Submitted", formattedDate);
@@ -545,23 +547,28 @@ function wishlist() {
       formData.append("Item Name", item.name);
 
       // Handle Submission
-      fetch(scriptUrl, {
+      return fetch(scriptUrl, {
         method: "POST",
         body: formData,
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log("Form Submitted");
-            console.log(formData);
-          } else {
-            throw new Error("Network response was not ok.");
-          }
-        })
-        // .then((data) => console.log(data))
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+      });
     });
+
+    Promise.all(submissionPromises)
+      .then(() => {
+        console.log("All forms submitted");
+        setPlayerName(""); // Reset player name
+        setSelectedItems([]); // Reset selected items
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setIsSubmitting(false); // Re-enable the submit button
+      });
   }
 
   return (
@@ -616,9 +623,9 @@ function wishlist() {
         ))}
         <button
           onClick={handleSubmit}
-          disabled={!playerName}
+          disabled={!playerName || isSubmitting} // Disable button if submitting
           className={`${
-            playerName
+            playerName && !isSubmitting
               ? "bg-lime-400"
               : !playerName
               ? "bg-gray-600"
@@ -626,11 +633,15 @@ function wishlist() {
           }
              my-5 py-2 px-1 h-10 w-full rounded text-sm text-gray-800 font-bold sm:text-lg transition-colors duration-300`}
         >
-          {playerName ? "Submit" : "Enter your name to submit"}
+          {isSubmitting
+            ? "Submitting..."
+            : playerName
+            ? "Submit"
+            : "Enter your name to submit"}
         </button>
       </div>
     </>
   );
 }
 
-export default wishlist;
+export default Wishlist;
