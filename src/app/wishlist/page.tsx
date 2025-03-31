@@ -528,7 +528,7 @@ function Wishlist() {
 
   // Submission
   const scriptUrl =
-    "https://script.google.com/macros/s/AKfycbzUrTsyE4dBMxd2tengCw297kTRp5Eqs0CDo28kT3z9Lvg466qeM5g-IaIZTdQa00eV4Q/exec";
+    "https://script.google.com/macros/s/AKfycbzeT8gsNdjHQP65hriKzpObBNRvAn87QHzALokOQJjznLj5RZl8l8lcCnT3YWF1A8lv/exec";
   function handleSubmit() {
     setIsSubmitting(true); // Disable the submit button
     // Prep Data
