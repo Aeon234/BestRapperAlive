@@ -163,7 +163,7 @@ function RosterData() {
     })
       .then((response) => response.text())
       .then((result) => {
-        let parsedData = JSON.parse(result);
+        const parsedData = JSON.parse(result);
 
         // If parsedData is an object, extract its data array
         const sheetData = Array.isArray(parsedData)
