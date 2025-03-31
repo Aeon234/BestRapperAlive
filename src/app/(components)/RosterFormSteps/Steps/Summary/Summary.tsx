@@ -41,7 +41,7 @@ export function Summary() {
   } = useContext(FormContext);
 
   const scriptUrl =
-    "https://script.google.com/macros/s/AKfycbzVS7fWBlU0kiTJ8SddpOJgSRQ8ivDoFo-8RxwUEXfvzxg7hOsb53gzlv4NZgkVSUa_/exec";
+    "https://script.google.com/macros/s/AKfycbxqIxfVq6OMcmvaM-DAGiAeRnimLCIOluD__rbZE7K8A6EHBPV4Q5sOWL-q8GegC_GU/exec";
 
   function handleGoForwardStep() {
     // Validate before beginning submission
