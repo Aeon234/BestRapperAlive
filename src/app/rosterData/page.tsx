@@ -88,6 +88,10 @@ const wowSpecializations: string[] = [
 ];
 
 const processSheetData = (sheetData: string[][]) => {
+  console.log("Sheet Data:", sheetData);
+  if (!sheetData || sheetData.length === 0) {
+    throw new Error("Sheet data is empty or undefined.");
+  }
   // Step 1: Remove the first record if it starts with "Date Submitted"
   const headerRow = sheetData[0];
   const dataRows =
@@ -159,8 +163,18 @@ function RosterData() {
     })
       .then((response) => response.text())
       .then((result) => {
-        const sheetData = JSON.parse(result);
-        console.log(sheetData);
+        let parsedData = JSON.parse(result);
+
+        // If parsedData is an object, extract its data array
+        const sheetData = Array.isArray(parsedData)
+          ? parsedData
+          : parsedData.data;
+
+        console.log("Sheet Data:", sheetData); // Debugging step
+
+        if (!Array.isArray(sheetData) || sheetData.length === 0) {
+          throw new Error("Invalid sheet data format or empty data.");
+        }
 
         // Process the sheet data
         const {
@@ -171,6 +185,7 @@ function RosterData() {
           uniqueSpecs,
           specCounts,
         } = processSheetData(sheetData);
+
         setUniqueRoles(uniqueRoles);
         setRoleCounts(roleCounts);
         setUniqueClasses(uniqueClasses);
@@ -179,6 +194,7 @@ function RosterData() {
         setSpecCounts(specCounts);
         setSheetData(sheetData); // Save the sheet data
       })
+
       .catch((error) => console.log("error", error));
   }, []);
 
