@@ -124,7 +124,8 @@ export function Summary() {
     formData.append("Additional Comments", additionComments.value);
 
     // Handle Submission
-    fetch(`${scriptUrl}?method=POST`, {
+    fetch(scriptUrl, {
+      method: "POST",
       body: formData,
     })
       .then((response) => {
