@@ -41,18 +41,14 @@ export function TextInput({
         )}
       </div>
       <div className="relative w-full h-full">
-        {/* <User
-          className="text-gray-400 absolute translate-y-1/4 start-2"
-          size={28}
-        /> */}
         <input
           className={`form_Input
-            px-4 py-3 rounded ${
-              hasError ? "border-red" : "border-gray-500"
-            } border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
-            placeholder:text-grey-900 w-full
-            
-            `}
+              px-4 py-3 rounded ${
+                hasError ? "border-red" : "border-gray-500"
+              } border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
+              placeholder:text-grey-900 w-full
+              
+              `}
           type="text"
           placeholder={placeholder}
           value={value}
@@ -99,9 +95,9 @@ export function TextInputLong({
       <div className="relative w-full h-full">
         <textarea
           className={`form_Input
-            px-4 py-3 rounded border-gray-500 border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
-            placeholder:text-grey-900 w-full h-[200px] resize-none
-            `}
+              px-4 py-3 rounded border-gray-500 border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
+              placeholder:text-grey-900 w-full h-[200px] resize-none
+              `}
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
