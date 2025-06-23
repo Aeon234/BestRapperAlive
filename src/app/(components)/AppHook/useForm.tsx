@@ -4,6 +4,7 @@ import { createContext, useContext, useState } from "react";
 interface FormControlsContextProps {
   currentPageIndex: number;
   previousPageIndex: number;
+  delta: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
   isFinalPage: boolean;
@@ -29,6 +30,8 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({
 }) => {
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
   const [previousPageIndex, setPreviousPageIndex] = useState<number>(0);
+
+  const delta = currentPageIndex - previousPageIndex;
 
   const hasNextPage = currentPageIndex < steps.length - 1;
   const hasPreviousPage = currentPageIndex > 0;
@@ -59,6 +62,7 @@ export const FormControlsProvider: React.FC<FormControlsProviderProps> = ({
       value={{
         currentPageIndex,
         previousPageIndex,
+        delta,
         hasNextPage,
         hasPreviousPage,
         isFinalPage,
