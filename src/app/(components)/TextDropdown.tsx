@@ -1,6 +1,5 @@
-// components/SelectCustom.tsx
 import React from "react";
-import Select, { StylesConfig, OptionProps } from "react-select";
+import Select, { StylesConfig } from "react-select";
 import Image from "next/image";
 import {
   useFormContext,
@@ -16,7 +15,6 @@ interface Option {
   icon?: string;
 }
 
-// merge our props with RHF’s controller props
 export type SelectCustomProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -28,7 +26,6 @@ export type SelectCustomProps<
   isDisabled?: boolean;
 } & Omit<UseControllerProps<TFieldValues, TName>, "control" | "name">;
 
-// your existing style objects
 const customStyles: StylesConfig<Option, false> = {
   control: (base, state) => ({
     ...base,

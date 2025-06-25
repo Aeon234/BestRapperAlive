@@ -131,7 +131,8 @@ function Form() {
     setSubmitting(true);
     console.log(data);
 
-    const scriptUrl = process.env.GSHEETS_SCRIPT_URL as string;
+    const scriptUrl =
+      "https://script.google.com/macros/s/AKfycbyxDDrn6AyOYkli0vLeBIX7lFaIwONrb_WqSVe0tolNExOySzLlUQcjOX_fPRSfvrt-/exec";
 
     // Prep Data
     const formData = new FormData();
@@ -181,7 +182,6 @@ function Form() {
         if (response.ok) {
           console.log("Form Submitted");
           reset();
-          setCurrentStep(0);
           setSubmitting(false);
           setSubmitted(true);
         } else {
@@ -225,11 +225,11 @@ function Form() {
           initial={{ opacity: 0, x: 0 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, ease: "easeInOut", type: "tween" }}
-          className="absolute grid z-1 sm:aspect-[1/1.6180334] lg:aspect-[1.6180334] sm:w-140 md:w-180 lg:w-250 mt-10 bg-[#0d0d11] rounded-2xl border-2 border-gray-600 place-items-center"
+          className="absolute grid z-1 sm:aspect-[1/1.6180334] lg:aspect-[1.6180334] bg-[url(/header.jpg)] bg-blend-multiply bg-cover sm:w-140 md:w-180 lg:w-250 mt-10 bg-gray-800 rounded-2xl border-2 border-gray-600 place-items-center"
         >
-          <div className="grid gap-4 justify-center text-center">
+          <div className="grid gap-2 justify-center text-center">
             <svg
-              className="mx-auto mb-4 h-20 w-20 text-green-500"
+              className="mx-auto h-20 w-20 text-green-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -244,11 +244,11 @@ function Form() {
               />
             </svg>
 
-            <h2 className="text-2xl font-semibold text-gray-300 mb-2">
+            <h2 className="text-2xl font-semibold text-gray-200 mb-2">
               Your Application has been submitted!
             </h2>
 
-            <p className="text-sm text-gray-400 pb-30">
+            <p className="text-sm text-gray-300 pb-30">
               Updates on next season's roster will be provided in the
               Announcements channel.
             </p>

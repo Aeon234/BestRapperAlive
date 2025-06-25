@@ -155,7 +155,7 @@ const uniqueRoles = Array.from(
 ).map((role) => ({
   value: role,
   label: role,
-  icon: (roleIcons[role] as StaticImageData).src, // convert to string URL
+  icon: (roleIcons[role] as StaticImageData).src,
 }));
 
 const getFilteredClasses = (role: string) =>
@@ -178,7 +178,6 @@ const getFilteredSpecs = (
     ?.specializations.filter(
       (s) =>
         s.role === role &&
-        // only exclude if both class and spec match the exclusion
         !(exclude?.cls === cls && exclude.specs.includes(s.spec))
     )
     .map((s) => ({ value: s.spec, label: s.spec })) || [];
@@ -190,7 +189,6 @@ function Characters() {
     formState: { errors },
   } = useFormContext<AppFormSchema>();
 
-  // watch the six fields
   const [role1, class1, spec1, role2, class2, spec2] = watch([
     "role1",
     "class1",
@@ -200,33 +198,21 @@ function Characters() {
     "spec2",
   ]) as [string, string, string, string, string, string];
 
-  // exclude specs already chosen in 1 & 2
   const exclude1 = { cls: class1, specs: spec1 ? [spec1] : [] };
   const exclude2 =
     class2 === class1 && spec1 ? { cls: class1, specs: [spec1] } : undefined;
 
-  //
-  // 2) whenever role1 changes → reset class1+spec1
-  //
   useEffect(() => {
-    // resetField will clear its value back to defaultValue (usually "")
     resetField("class1");
     resetField("spec1");
-    // clear any error messages
     clearErrors(["class1", "spec1"]);
   }, [role1, resetField, clearErrors]);
 
-  //
-  // 3) whenever class1 changes → reset spec1
-  //
   useEffect(() => {
     resetField("spec1");
     clearErrors("spec1");
   }, [class1, resetField, clearErrors]);
 
-  //
-  // 4) same logic for the 2nd row
-  //
   useEffect(() => {
     resetField("class2");
     resetField("spec2");
@@ -238,26 +224,20 @@ function Characters() {
     clearErrors("spec2");
   }, [class2, resetField, clearErrors]);
 
-  // reset handler for the 1st row
   const resetCharacter1 = () => {
-    // clear values
     resetField("role1");
     resetField("class1");
     resetField("spec1");
     resetField("role2");
     resetField("class2");
     resetField("spec2");
-    // clear errors
     clearErrors(["role1", "class1", "spec1", "role2", "class2", "spec2"]);
   };
 
-  // reset handler for the 2nd row
   const resetCharacter2 = () => {
-    // clear values
     resetField("role2");
     resetField("class2");
     resetField("spec2");
-    // clear errors
     clearErrors(["role2", "class2", "spec2"]);
   };
 

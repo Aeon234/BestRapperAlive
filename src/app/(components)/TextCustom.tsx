@@ -11,13 +11,9 @@ type TextCustomProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = {
-  /** the field name in your form’s schema */
   name: TName;
-  /** visible label text */
   label: string;
-  /** input placeholder text */
   placeholder?: string;
-  /** disable input (hides the whole field when true) */
   disabled?: boolean;
 } & Omit<UseControllerProps<TFieldValues, TName>, "control" | "name">;
 
@@ -31,10 +27,8 @@ export function TextCustom<
   disabled = false,
   ...controllerProps
 }: TextCustomProps<TFieldValues, TName>) {
-  // grab RHF methods from context
   const { control } = useFormContext<TFieldValues>();
 
-  // set up a controller for this field
   const {
     field: { value, onChange, onBlur },
     fieldState: { error },
@@ -99,10 +93,8 @@ export function TextCustomArea<
   disabled = false,
   ...controllerProps
 }: TextCustomProps<TFieldValues, TName>) {
-  // grab RHF methods from context
   const { control } = useFormContext<TFieldValues>();
 
-  // set up a controller for this field
   const {
     field: { value, onChange, onBlur },
     fieldState: { error },
