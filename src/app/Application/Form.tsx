@@ -16,6 +16,8 @@ import Leadership from "../(components)/AppSteps/Step4_Leadership";
 import Comments from "../(components)/AppSteps/Step5_Comments";
 import Summary from "../(components)/AppSteps/Step6_Summary";
 
+import header from "../../../public/header.jpg";
+
 export type Step = {
   id: string;
   title: string;
@@ -199,7 +201,10 @@ function Form() {
       <div className="sm:aspect-[1/1.6180334] lg:aspect-[1.6180334] sm:w-140 md:w-180 lg:w-250 mt-10 bg-[#0d0d11] rounded-2xl border-2 border-gray-600 grid gap-0 sm:grid-rows-9 md:grid-cols-1 lg:grid-rows-1 lg:grid-cols-9">
         <FormControlsProvider steps={steps}>
           <FormProvider {...form}>
-            <div className="sm:row-span-2 lg:col-span-2 content-center border-0 bg-[url(/header.jpg)] bg-gray-400 bg-blend-multiply bg-cover bg-bottom  lg:bg-center rounded-tl-2xl rounded-bl-2xl pt-4 sm:px-8 lg:px-6">
+            <div
+              className="sm:row-span-2 lg:col-span-2 content-center border-0 bg-gray-400 bg-blend-multiply bg-cover bg-bottom  lg:bg-center rounded-tl-2xl rounded-bl-2xl pt-4 sm:px-8 lg:px-6"
+              style={{ backgroundImage: `url(${header.src})` }}
+            >
               <Stepper steps={steps} />
             </div>
             <div className="sm:row-span-7 lg:col-span-7 ">
@@ -224,7 +229,8 @@ function Form() {
           initial={{ opacity: 0, x: 0 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, ease: "easeInOut", type: "tween" }}
-          className="absolute grid z-1 sm:aspect-[1/1.6180334] lg:aspect-[1.6180334] bg-[url(/header.jpg)] bg-blend-multiply bg-cover sm:w-140 md:w-180 lg:w-250 mt-10 bg-gray-800 rounded-2xl border-2 border-gray-600 place-items-center"
+          className="absolute grid z-1 sm:aspect-[1/1.6180334] lg:aspect-[1.6180334] bg-blend-multiply bg-cover sm:w-140 md:w-180 lg:w-250 mt-10 bg-gray-800 rounded-2xl border-2 border-gray-600 place-items-center"
+          style={{ backgroundImage: `url(${header.src})` }}
         >
           <div className="grid gap-2 justify-center text-center">
             <svg
