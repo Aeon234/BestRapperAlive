@@ -11,7 +11,7 @@ function Stepper({ steps }: { steps: Step[] }) {
       sm:w-fit sm:m-auto lg:flex justify-center gap-4 lg:flex-col lg:gap-8 top-0 bottom-0 m-auto select-none"
     >
       {steps.map((step, idx) => {
-        const isActive = idx > currentPageIndex + 1 || idx === currentPageIndex;
+        const isActive = idx === currentPageIndex;
         const isCompleted = idx < currentPageIndex;
         // const hasError = step.inputs.some((key) => errors[key] !== undefined);
         return (
