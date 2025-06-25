@@ -23,7 +23,6 @@ function Summary() {
     eventsOfficer,
     officerComments,
     comments,
-    timezone,
   } = watch();
 
   const officerRoles = [

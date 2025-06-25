@@ -163,11 +163,6 @@ const getFilteredClasses = (role: string) =>
     .filter((w) => w.specializations.some((s) => s.role === role))
     .map((w) => ({ value: w.class, label: w.class }));
 
-interface Exclude {
-  cls: string;
-  specs: string[];
-}
-
 const getFilteredSpecs = (
   role: string,
   cls: string,
@@ -186,10 +181,10 @@ function Characters() {
     watch,
     resetField,
     clearErrors,
-    formState: { errors },
+    formState: {},
   } = useFormContext<AppFormSchema>();
 
-  const [role1, class1, spec1, role2, class2, spec2] = watch([
+  const [role1, class1, spec1, role2, class2] = watch([
     "role1",
     "class1",
     "spec1",

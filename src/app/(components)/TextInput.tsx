@@ -2,7 +2,7 @@ interface TextInputProps {
   label: string;
   placeholder: string;
   value: string;
-  onChange: (value: any) => void;
+  onChange: (value: string) => void;
   errorMessage: string;
   hasError: boolean;
   clearError: () => void;
@@ -65,7 +65,7 @@ interface TextInputLongProps {
   label: string;
   placeholder: string;
   value: string;
-  onChange: (value: any) => void;
+  onChange: (value: string) => void;
   disabled?: boolean;
 }
 

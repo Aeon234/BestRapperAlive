@@ -3,7 +3,7 @@ import { useFormControls } from "../(components)/AppHook/useForm";
 import { Step } from "./Form";
 
 function Stepper({ steps }: { steps: Step[] }) {
-  const { currentPageIndex, setPage } = useFormControls();
+  const { currentPageIndex } = useFormControls();
 
   return (
     <div

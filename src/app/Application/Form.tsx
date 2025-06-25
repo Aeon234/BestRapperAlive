@@ -37,11 +37,11 @@ const steps = [
     title: "Characters",
     description: (
       <>
-        Fill out the characters you're interested in playing during Mythic
+        Fill out the characters you&apos;re interested in playing during Mythic
         Progression.
         <br />
         <span className="font-bold text-red-500">NOTE: </span>
-        What you select is what you're
+        What you select is what you&apos;re
         <span className="mx-1 underline underline-offset-2 decoration-2 decoration-amber-600 font-bold">
           committing
         </span>
@@ -99,7 +99,6 @@ const steps = [
 ] satisfies Step[];
 
 function Form() {
-  const [currentStep, setCurrentStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { reset } = useForm();
@@ -249,7 +248,7 @@ function Form() {
             </h2>
 
             <p className="text-sm text-gray-300 pb-30">
-              Updates on next season's roster will be provided in the
+              Updates on next season&apos;s roster will be provided in the
               Announcements channel.
             </p>
           </div>

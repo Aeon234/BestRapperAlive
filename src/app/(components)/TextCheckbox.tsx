@@ -87,7 +87,7 @@ export function ToggleButtonCustom<
           className={className}
           value="check"
           selected={value}
-          onChange={(_event, selected) => onChange(!value)}
+          onChange={() => onChange(!value)}
           onFocus={() => clearErrors(name)}
           disabled={disabled}
           sx={{
@@ -169,7 +169,7 @@ export function ToggleButtonDescCustom<
           className={className}
           value="check"
           selected={value}
-          onChange={(_event, selected) => {
+          onChange={() => {
             onChange(!value);
           }}
           onFocus={() => clearErrors(name)}
