@@ -213,7 +213,7 @@ function Form() {
         <FormControlsProvider steps={steps}>
           <FormProvider {...form}>
             <div
-              className="sm:row-span-2 lg:col-span-2 content-center border-0 bg-gray-400 bg-blend-multiply bg-cover bg-bottom  lg:bg-center rounded-tl-2xl rounded-bl-2xl pt-4 sm:px-8 lg:px-6"
+              className="sm:row-span-2 lg:col-span-2 content-center border-0 bg-gray-400 bg-blend-multiply bg-cover bg-bottom  lg:bg-center rounded-tr-2xl lg:rounded-tr-none rounded-tl-2xl rounded-bl-none lg:rounded-bl-2xl pt-4 sm:px-8 lg:px-6"
               style={{ backgroundImage: `url(${header.src})` }}
             >
               <Stepper steps={steps} />
