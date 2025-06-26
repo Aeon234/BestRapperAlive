@@ -130,10 +130,15 @@ export function TextCustomArea<
       <div className="relative w-full h-full">
         <textarea
           id={name}
-          className="px-4 py-3 rounded border-gray-500 border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
-            placeholder-gray-400  w-full h-[200px] resize-none"
+          className={`
+            px-4 py-3 rounded ${
+              hasError ? "border-red-500" : "border-gray-500"
+            } rounded  border-gray-500 border-[2px] text-base text-gray-100 bg-zinc-800 font-medium  
+            ${
+              hasError ? "placeholder-red-500" : "placeholder-gray-400"
+            }  w-full h-[200px] resize-none`}
           placeholder={placeholder}
-          value={value ?? ""}
+          value={value}
           onChange={onChange}
           onBlur={onBlur}
           disabled={disabled}

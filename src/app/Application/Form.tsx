@@ -71,7 +71,7 @@ const steps = [
     description: (
       <>
         Are you interested in a leadership position? Select{" "}
-        <span className="underline underline-offset-2 decoration-2 decoration-red-500 font-bold">
+        <span className="underline underline-offset-2 decoration-2 decoration-pink-500 font-bold">
           all
         </span>{" "}
         positions you are interested in.
@@ -82,7 +82,15 @@ const steps = [
       </>
     ),
     component: Leadership,
-    inputs: ["salesInterest", "salesComments"],
+    inputs: [
+      "meleeOfficer",
+      "rangedOfficer",
+      "logsOfficer",
+      "recruitOfficer",
+      "salesOfficer",
+      "eventsOfficer",
+      "officerComments",
+    ],
   },
   {
     id: "5",
@@ -171,7 +179,10 @@ function Form() {
       String(data.recruitOfficer || false)
     );
     formData.append("Sales Lead Interest", String(data.salesOfficer || false));
-    formData.append("Leadership Interest Comments", data.officerComments || "");
+    formData.append(
+      "Leadership Interest Comments",
+      String(data.officerComments || false)
+    );
     formData.append("Additional Comments", data.comments || "");
 
     // Handle Submission
@@ -244,7 +255,7 @@ function Form() {
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="3"
+                strokeWidth="3"
                 d="M5 13l4 4L19 7"
               />
             </svg>

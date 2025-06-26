@@ -10,14 +10,14 @@ export const AppSchema = z
     class2: z.string().max(20).optional(),
     spec2: z.string().max(100).optional(),
     salesInterest: z.boolean().default(false).optional(),
-    salesComments: z.string().max(1000).optional(),
+    salesComments: z.string().max(1000),
     meleeOfficer: z.boolean().default(false).optional(),
     rangedOfficer: z.boolean().default(false).optional(),
     logsOfficer: z.boolean().default(false).optional(),
     recruitOfficer: z.boolean().default(false).optional(),
     salesOfficer: z.boolean().default(false).optional(),
     eventsOfficer: z.boolean().default(false).optional(),
-    officerComments: z.string().max(1000).optional(),
+    officerComments: z.string().max(1000),
     comments: z.string().max(1000).optional(),
     timezone: z.string().optional(),
   })
@@ -41,6 +41,39 @@ export const AppSchema = z
           inclusive: true,
           path: ["spec2"],
           message: "Select a Spec!",
+        });
+      }
+    }
+    if (data.salesInterest) {
+      const comment = data.salesComments?.trim() ?? "";
+      if (comment.length < 3) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.too_small,
+          minimum: 3,
+          type: "string",
+          inclusive: true,
+          path: ["salesComments"],
+          message: "Confirm that you've read & understood the commitment.",
+        });
+      }
+    }
+    if (
+      data.meleeOfficer ||
+      data.rangedOfficer ||
+      data.logsOfficer ||
+      data.recruitOfficer ||
+      data.salesOfficer ||
+      data.eventsOfficer
+    ) {
+      const comment = data.officerComments?.trim() ?? "";
+      if (comment.length < 3) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.too_small,
+          minimum: 3,
+          type: "string",
+          inclusive: true,
+          path: ["officerComments"],
+          message: "Provide more details.",
         });
       }
     }

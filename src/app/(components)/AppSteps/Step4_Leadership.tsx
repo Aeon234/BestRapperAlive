@@ -70,7 +70,7 @@ function Leadership() {
           <TextCustomArea
             name="officerComments"
             label="Leadership Position Comments"
-            placeholder="Enter your comments here"
+            placeholder="Provide details on your choices and list top 3."
           />
         </div>
       )}
