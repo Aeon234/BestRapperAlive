@@ -108,7 +108,7 @@ export function ToggleButtonCustom<
         >
           <Icon style={{ marginRight: 10 }} />
           <div className="flex flex-col flex-grow items-center">
-            <span className="font-bold">{label}</span>
+            <span className="font-light">{label}</span>
           </div>
         </ToggleButton>
       </div>
