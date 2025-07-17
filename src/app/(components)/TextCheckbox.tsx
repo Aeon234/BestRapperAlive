@@ -77,7 +77,7 @@ export function ToggleButtonCustom<
           {/* {label} */}
         </label>
         {hasError && (
-          <span className="text-red-500 text-xs font-medium">
+          <span className="text-red-500 text-xs sm:text-sm font-medium">
             {errorMessage}
           </span>
         )}
@@ -108,7 +108,7 @@ export function ToggleButtonCustom<
         >
           <Icon style={{ marginRight: 10 }} />
           <div className="flex flex-col flex-grow items-center">
-            <span className="font-bold">{label}</span>
+            <span className="font-bold text-xs">{label}</span>
           </div>
         </ToggleButton>
       </div>
