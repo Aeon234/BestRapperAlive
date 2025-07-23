@@ -183,7 +183,7 @@ function Form() {
       String(data.recruitOfficer || false)
     );
     formData.append("Sales Lead Interest", String(data.salesOfficer || false));
-    ormData.append("Events Lead Interest", String(data.eventsOfficer || false));
+    formData.append("Events Lead Interest", String(data.eventsOfficer || false));
     formData.append(
       "Leadership Interest Comments",
       String(data.officerComments || false)
